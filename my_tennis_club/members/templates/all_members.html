@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    {%extends "master.html"%}
+
+    {%block title%}
+    My Tennis Club - List of all members
+    {%endblock%}
+
+    {%block content%}
+    <p><a href="/">Home</a></p>
+    <ul>
+        {% for x in my_members %}
+        <li><a href="details/{{x.id}}">{{x.first_name}} {{x.last_name}}</a></li>
+        {% endfor %}
+    </ul>
+    {%endblock%}
+</body>
+</html>
