@@ -171,10 +171,25 @@
     <h1>This is django {# learning #} section</h1>
     {% comment %} {% endcomment %} 
 
-    {% include "mymenu.html" {#Variable-include#} with me="test" sponsor="tester" %}
+    {% comment %} {% include "mymenu.html" {#Variable-include#} with me="test" sponsor="tester" %}
     
-    {% include "fotter.html" %}
+    {% include "fotter.html" %} {% endcomment %}
 
+    <table border='1'>
+        <tr>
+            <th>id</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr> 
 
+        {% for x in members %}
+        <tr>
+            <td>{{x.id}}</td>
+            <td>{{x.first_name}}</td>
+            <td>{{x.last_name}}</td>
+        </tr>
+        {% endfor %}
+    </table> 
+    {% comment %} {{members}}   {% endcomment %}
 </body>
 </html>
