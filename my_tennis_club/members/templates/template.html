@@ -6,9 +6,175 @@
     <title>Document</title>
 </head>
 <body>
+
+    {% comment %} <ul>
+        {% with first_name="Shashank" %}
+        <h3>Hola! {{first_name}}, here are members of our community : </h3>
+        {% endwith %}
+        {% for x in members %}
+        <h4>{{x.first_name}}</h4>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+
+    {% comment %} {% if greeting == 1 %}
+    <h4>Hi</h4>
+    {% elif greeting == 2 %}
+    <h4>Hola</h4> 
+    {% endif %} {% endcomment %}
+
+    {% comment %} <ul>
+        {% for x in members %}
+        <li style="color: {% cycle 'red' 'green' %}">
+        {{x.first_name}}
+        </li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    {% comment %} {% filter upper %}
+    <p>This is a line.</p>
+    {% endfilter %} {% endcomment %}
+
+    {% comment %} {% for x in apple %} {% endcomment %}
+    {% comment %} <h1>The price: {{x | add:"vegetables"}}</h1> {% endcomment %}
+    {% comment %} {% endfor %} {% endcomment %}
+    {% comment %} {{name|addslashes}} {% endcomment %}
+    {% comment %} {{name|capfirst}} {% endcomment %}
+    {% comment %} <h1>{{name|center:20}}</h1>
+    <textarea>{{name|center:20}} </textarea> {% endcomment %}
+    {% comment %} {{name|cut:'an'}} {% endcomment %}
+    {% comment %} {% for x in members %}
+    {{x.first_name|default:'No Members'}}
+    {% endfor %} {% endcomment %}
+    {% comment %} {% for x in color %}
+    {{x.first_name|default_if_none::'No color'}}
+    {% endfor %} {% endcomment %}
+
+    {% comment sort by age%} {% for x in my_dict|dictsort:'age' %} 
+    <p>{{x.age}} {{x.name}}</p>
+    {% endfor %} {% endcomment %}
+
+    {% comment %} {% for x in my_dict|dictsortreversed:'age' %} 
+    <p>{{x.age}} {{x.name}}</p>
+    {% endfor %}  {% endcomment %}
+
+    {% comment %} {% if value|divisibleby:2 %}
+    <h4>Yes it is divisible.</h4>
+    {% endif %}
+    <button onclick="alert('{{ name|escapejs }}')">Click me</button> {% endcomment %}
+
+    {% comment %} {% firstof x y z %} {% endcomment %}
+
+    {% comment %} <ul>
+        {% for x in prices %}
+        {% ifchanged %} //display the value only if it has changed
+        <li>{{x}}</li>
+        {% endifchanged %}
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    {% comment %} {% include "childtemplate.html" %} {% endcomment %}
+
+    {% comment %} {% lorem 1 w random %} //1=count; word(w), b(block), p(paragraph) = methods;
+    //random - start at random word {% endcomment %}
+
+    {% comment %} {% now "Y-m-d H:i" %}// there are more options {% endcomment %}
+
+    {% comment %} {% regroup cars by brand as new_list %}
+
+    {% for x in new_list %}
+    <h2>{{x.grouper}}</h2>
+    {% for y in x.list %}
+    <p>{{y.model}} {{y.year}}</p>
+    {% endfor %}
+    {% endfor %} {% endcomment %}
+    
+    {% comment %} <ul>
+        {% for x in fruits %}
+        <li style='color:{% cycle "green" "blue" "purple" %}'>
+            {{x}}
+        </li>
+        {% if x == "Banana" %}
+        {% resetcycle %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+    
+    {% verbatim  %}
+    <h5>
+        {% templatetag openblock %}
+    extends
+    {% templatetag closeblock %}
+    </h5>
+    {% endverbatim  %} {% endcomment %}
+
+    {% comment %} {% with my_var=fruits|length %}
     {% for x in fruits %}
-        <h1>{{x}}</h1>
-    {%endfor%}
-    <p>In view.py you can see what the fruits variable looks like.</p>
+    <h4>{{x}} is one of {{my_var}} fruits</h4>
+    {% endfor %}
+    {% endwith %} {% endcomment %}
+
+    {% comment %} {% if value == 20 %}
+    <h1>Hello</h1>
+    {% elif value == 30 %}
+    <h1>Hi There!</h1>
+    {% elif value >= 40 and day == 'Monday' or 'greeting' == 2%}
+    <h1>Hola</h1>
+    {% else %}
+    <h1>Bye</h1>
+    {% endif %} {% endcomment %}
+    
+    {% comment %} {% if 'carrot' in fruits %}
+    <h1>It is present.</h1>
+    {% else %}
+    <h1>It is not present.</h1>
+    {% endif %} {% endcomment %}
+    
+    
+    {% comment %} {% if 'apple' in fruits %}
+    <h1>It is present</h1>
+    {% endif %} {% endcomment %}
+
+    {% comment %} {% with count1=x count2=x %}{% endwith %}
+    {% if count1 is not count2 %} // is operator checks the identity
+    <h1>YES</h1>
+    {% else %}
+    <h1>No</h1>
+    {% endif %} {% endcomment %}
+
+    {% comment %} {% for x in members reversed %}
+    <h1>{{x.id}}</h1>
+    {% empty %}
+    <p>
+        {{x.first_name}}
+        {{x.last_name}}
+    </p>
+    {% endfor %} {% endcomment %}
+
+    {% comment %} <ul>
+        {% for x in fruits %}
+        <li {% if forloop.first %}
+        style="background-color:lightblue;" 
+        {% endif %}>
+        {{x}}</li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    {% comment "revcounter & revcounter0 (starts from 0)"%} <ul> 
+        {% for x in fruits %}
+        <li>{{forloop.revcounter}}</li> 
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    <h1>welcome to django</h1>
+    {% comment %} {% comment  "just comment" %} {% endcomment %}
+    <h1>This is django {# learning #} section</h1>
+    {% comment %} {% endcomment %} 
+
+    {% include "mymenu.html" {#Variable-include#} with me="test" sponsor="tester" %}
+    
+    {% include "fotter.html" %}
+
+
 </body>
 </html>

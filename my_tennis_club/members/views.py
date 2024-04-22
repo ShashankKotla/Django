@@ -26,8 +26,52 @@ def main(request):
     return HttpResponse(template.render())
 
 def testing(request):
-    template = loader.get_template('template.html')
+    members = Member.objects.all()
+    template = loader.get_template("template.html")
     context = {
-        'fruits': ['Apple', 'Banana', 'cherry'],
+        'greeting':2,
+        'members': members,
+        'prices' : [1,2,3,3,4,4,5,6,6,7,7,7],
+        'fruits' : ['apple', 'mango', 'pineapple', "grapes",'banana', 'mango'],
+        'vegetables': ['onion', 'tomato', 'carrot'],
+        'name' : 'shinchan\nnohara',
+        'my_dict': [
+            {'name': 'shinchan', 'age': 5},
+            {'name': 'naruto', 'age': 22},
+            {'name': 'tom', 'age': 60}
+        ],
+        'value':40,
+        'day': 'Monday',
+        'cars': [
+        {
+            'brand': 'Ford',
+            'model': 'Mustang',
+            'year': '1964',
+        },
+        {
+            'brand': 'Ford',
+            'model': 'Bronco',
+            'year': '1970',
+        },
+        {
+            'brand': 'Ford',
+            'model': 'Sierra',
+            'year': '1981',
+        },
+        {
+            'brand': 'Volvo',
+            'model': 'XC90',
+            'year': '2016',
+        },
+        {
+            'brand': 'Volvo',
+            'model': 'P1800',
+            'year': '1964',
+        }],
+        'x' : [1, 2, 3],
+        'y' : [1, 2, 3],
     }
+    
+
     return HttpResponse(template.render(context, request))
+    # return HttpResponse(template.render())
