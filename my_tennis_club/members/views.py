@@ -44,7 +44,8 @@ def testing(request):
     #Order-By
     # members = Member.objects.order_by("first_name").values()
     # members = Member.objects.order_by("-first_name").values() #desc order
-    members = Member.objects.order_by("first_name", "-id").values()
+    # members = Member.objects.order_by("first_name", "-id").values()
+    members = Member.objects.all().values()
     template = loader.get_template("template.html")
     context = {
         'greeting':2,

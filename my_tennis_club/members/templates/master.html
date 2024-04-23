@@ -1,15 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}"> 
+    <title>{% block title %} {%endblock%}</title>  
 </head>
 <body>
-    {% block content %}
+    {% comment %} <h1>Members</h1> {% endcomment %}
+    {% comment %} {% block content %}
     {%endblock%}
     {% block userinfo %}
     {% endblock userinfo %}
-    <p>Your age is 5</p>
+    <p>Your age is 5</p> {% endcomment %}
+    <div class="topnav">
+        <a href="/">Home</a> | 
+        <a href="/members">Members</a>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+    
 </body>
 </html>

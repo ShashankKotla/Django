@@ -13,12 +13,21 @@
     {%endblock%}
 
     {%block content%}
-    <p><a href="/">Home</a></p>
+    {% comment %} <p><a href="/">Home</a></p>
     <ul>
         {% for x in my_members %}
         <li><a href="details/{{x.id}}">{{x.first_name}} {{x.last_name}}</a></li>
         {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
+    <div class="mycard">
+        <h1>Members</h1>
+        <ul>
+            {% for x in my_members %}
+            <li onclick="window.location='details/{{x.id}}'">{{x.first_name}} {{x.last_name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
     {%endblock%}
+
 </body>
 </html>

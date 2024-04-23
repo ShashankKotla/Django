@@ -1,0 +1,7 @@
+body{
+    background-color: purple;
+    color: aqua;
+    display: flex;
+    place-content: center;
+    gap: 5px;
+}

@@ -1,13 +1,16 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'myglobal.css' %}">
 </head>
 <body>
 
-    {% comment %} <ul>
+    <div>
+        {% comment %} <ul>
         {% with first_name="Shashank" %}
         <h3>Hola! {{first_name}}, here are members of our community : </h3>
         {% endwith %}
@@ -160,22 +163,22 @@
         {% endfor %}
     </ul> {% endcomment %}
 
-    {% comment "revcounter & revcounter0 (starts from 0)"%} <ul> 
+    {% comment %} {% comment "revcounter & revcounter0 (starts from 0)"%} <ul> 
         {% for x in fruits %}
         <li>{{forloop.revcounter}}</li> 
         {% endfor %}
-    </ul> {% endcomment %}
+    </ul> {% endcomment %} 
 
-    <h1>welcome to django</h1>
+    {% comment %} <h1>welcome to django</h1> {% endcomment %}
     {% comment %} {% comment  "just comment" %} {% endcomment %}
-    <h1>This is django {# learning #} section</h1>
+    {% comment %} <h1>This is django {# learning #} section</h1> {% endcomment %}
     {% comment %} {% endcomment %} 
 
     {% comment %} {% include "mymenu.html" {#Variable-include#} with me="test" sponsor="tester" %}
     
     {% include "fotter.html" %} {% endcomment %}
 
-    <table border='1'>
+    {% comment %} <table border='1'>
         <tr>
             <th>id</th>
             <th>first_name</th>
@@ -189,7 +192,12 @@
             <td>{{x.last_name}}</td>
         </tr>
         {% endfor %}
-    </table> 
+    </table>  {% endcomment %}
     {% comment %} {{members}}   {% endcomment %}
+    </div>
+
+    {% for x in fruits %}
+    <h1>{{x}}</h1>
+    {% endfor %} 
 </body>
 </html>

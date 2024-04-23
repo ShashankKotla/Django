@@ -8,14 +8,19 @@
 <body>
     {%extends "master.html"%}
     {%block title%}
-    <h1>{{my_members.first_name}} {{my_members.last_name}}</h1>
+    Details about {{my_members.first_name}} {{my_members.last_name}}
     {%endblock%}
 
     {%block content%}
-    <p>Phone: {{my_members.phone}}</p>
-    <p>Member_since: {{my_members.joined_date}}</p>
+    <div class="mycard">
+        <h1>{{my_members.first_name}} {{my_members.last_name}}</h1>
+        <p>Phone: {{my_members.phone}}</p>
+        <p>Member_since: {{my_members.joined_date}}</p>
+    </div>
     {%endblock%}
 
-    <p>Back to <a href="/members">Members</a></p>
+    {% comment %} <p>Back to <a href="/members">Members</a></p> {% endcomment %}
+    
+
 </body>
 </html>
