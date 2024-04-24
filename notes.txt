@@ -1,0 +1,102 @@
+/********************************** DJANGO ************************************/
+
+“ Django is mainly used for the "back-end" part, which deals with things like managing data, user authentication, and handling requests from the user. “
+
+Defult config : It comes with CRUD & admin UI. For admin use have to use $ python manage.py createsuperuser & provide username , password.
+
+core concept:-
+-:: MVT ::-
+User ------> Django --------->url(path points)---------->view(It is a func & it points 2 thing's 1.Model(DB) & 2. Template(HTML)).
+In view, it take data from model and present them in template.
+
+-:: MVC ::- //Use full in other dev.
+User request -------> Control(points model & view)
+
+-:: MVC vs MVT ::-
+Control <----> view
+Model <-----> model
+View <-----> Template
+
+understandable story :-
+Think of it like this: Imagine you're cooking a meal. You have different tools for cutting vegetables, like a knife, and for stirring, like a spoon. Each tool has a specific job. 
+
+Similarly, in web development, you have different tasks like managing data (backend) and making things look good (frontend). Different frameworks are like different sets of tools designed for these specific tasks. Express is mainly for backend tasks, like handling requests and managing data, while front-end frameworks like React or Angular focus on making the website look nice and interact smoothly with users. So, just like in cooking, different tools (or frameworks) are used for different jobs in web development.
+
+
+-:Quick start:-
+
+$ python3 -m venv .venv ::- cmd for virtual environment.
+$ source .venv/bin/activate  ::- activate venv
+
+-:: start project ::-
+$ django -m django --version.
+$ django-admin startproject <name of the project> ::- to create project
+-:Structure:-
+mysite -> outer root directory (It is a container for your project)
+    dbsqlite -> Default db create by django.
+        manage.py -> It's like a cmd-line utility to interact with django.
+    mysite/ -> inner root directory is a python pacjkage.
+        __init__.py -> (tells python to consider this dir as package) and it is a empty file.
+        settings.py -> setting configuration can be done.
+        urls.py -> Actual python package.
+        asgi.py -> compatible webserver
+        wsgi.py -> compatible webserver.
+
+project vs app ? ->A project is a collection of configurations & apps is a folder,for a particular website.
+$ python manage.py runserver ::- to run django project.(Here we get an startup page of django). manage.py is like a cmd UI.
+
+-:things to be addon:-
+:- urlspatterns=[path("", views.index, name=index)] ; To call view, this path func contains 'root(path)', module.func, name='func name'.
+:- path("polls/", include("polls.urls")) ; In root URL config, include() allows refering other URL configs.(root url file)
+
+$python manage.py startapp <apppname> ::- create app
+
+-:: migrate ::-
+$python manage.py makemigrations members
+$ python manage.py migrate
+Note:- 1. The above 2 cmds are used to create tables it can be used after writing the models. 
+2. It will create migrations folder >0001.py file
+
+--:shell:--
+$python manage.py shell ::- To open python shell in django environment.
+
+sample code:
+from members.model import Member
+from <folder>.<file> import <classname form db>
+
+Member.objects.all() ::- shows the questy set <Queryset[<Member:Member object (1)]>
+member = Member(firstname="Email")
+member.save() ::- to save the data
+member.objects.all().values() ::- to see the values
+
+for update; x = Members.objects.all()[4]
+x.first_name
+x.first_name = "stalikken"
+x.save()
+x.first_nameMembers.objects.all().values()
+delete ::- "x.delete()" -similar to update
+
+-:: Template ::-
+{* *} :- Tells django to preform some programming logic inside these brackets.
+:- To make the model data avilable in the template this can be done by view(functions).
+:- variable declaration:- {%with%}, variable creation can be done.
+:- {%if%} & {%for%} are django template tags & there are many of them.
+:- url => https://www.w3schools.com/django/django_template_tags.php ; Tag Reference.
+
+-:: Static Files ::-
+DEBUG = True (static files will work), False (static files doesn't work).
+
+Note :- 
+:- Django doesn't have build-in support for serving static files.In this case we use third-party library installation can be done.
+:- We need to install 'whitenoise' python package to manage static files (DEBUG=False).
+:- In Settings.py :- 1. set middleware (addon whitenoise)
+                    2. STATIC_ROOT = BASE_DIR / 'productionfiles' ; Here the magic happens we are informing django that to look over a where we have stored static file
+                    ' python manage.py collect static ', This cmd collects all static files which are in django.
+                
+
+-:: CSS addon ::-
+
+-> After creating an css file adding some css code in that, then we need to add it to template.
+:- 2 things we have to perform, 1. add {%add static%}, 2.link:css-> link rel="stylesheet" href="{%static 'myfirst.css' %}
+
+
