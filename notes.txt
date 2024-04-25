@@ -30,7 +30,7 @@ $ source .venv/bin/activate  ::- activate venv
 
 -:: start project ::-
 $ django -m django --version.
-$ django-admin startproject <name of the project> ::- to create project
+$ django-admin startproject <name of the project> . ::- to create project, (.)dot prevents to create root dir as subdir.
 -:Structure:-
 mysite -> outer root directory (It is a container for your project)
     dbsqlite -> Default db create by django.
@@ -99,4 +99,5 @@ Note :-
 -> After creating an css file adding some css code in that, then we need to add it to template.
 :- 2 things we have to perform, 1. add {%add static%}, 2.link:css-> link rel="stylesheet" href="{%static 'myfirst.css' %}
 
+:-In HTML(called parent html) in root level dir, can be reused by child html which are in apps by adding {%extend <html name> %}
 
